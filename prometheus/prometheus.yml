@@ -1,0 +1,32 @@
+global:
+  scrape_interval: 5s
+  scrape_timeout: 3s
+  evaluation_interval: 5s
+alerting:
+  alertmanagers:
+  - static_configs:
+    - targets: []
+    scheme: http
+    timeout: 3s
+    api_version: v1
+scrape_configs:
+- job_name: prometheus
+  honor_timestamps: true
+  scrape_interval: 5s
+  scrape_timeout: 3s
+  metrics_path: /metrics
+  scheme: http
+  static_configs:
+  - targets:
+    - localhost:9090
+- job_name: node_exporter
+  static_configs:
+    - targets:
+      - homelab.dockernode1:9100
+      - dn1:9100
+      - dn2:9100
+      - dn3:9100
+      - dn4:9100
+      - dm1:9100
+      - dm2:9100
+
